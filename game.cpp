@@ -63,10 +63,12 @@ class NumberGuessingGame
 				std::cout << "Too low! Try again.\n";
 			else
 				std::cout << "Too high! Try again.\n";
-		} while (attempts < maxAttempts && guess != hiddenNum);
-		if (attempts >= maxAttempts) {
-            std::cout << "Sorry, " << playerName << ", you've reached the maximum number of attempts. The correct number was: " << hiddenNum << "\n";
-        }
+		}
+		while (attempts < maxAttempts && guess != hiddenNum);
+		if (attempts >= maxAttempts)
+		{
+			std::cout << "Sorry, " << playerName << ", you've reached the maximum number of attempts. The correct number was: " << hiddenNum << "\n";
+		}
 	}
 };
 int main()
