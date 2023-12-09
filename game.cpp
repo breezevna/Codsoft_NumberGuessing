@@ -75,41 +75,40 @@ int main()
 {
 	std::string playerName;
 	int min, max;
-	std::string chose = "";
+	int chose = 0;
 
-	std::cout << "Welcome to he Number Guessing game!\n";
+	std::cout << "Welcome to the Number Guessing game!\n";
 	std::cout << "The rules are simple! Just guess the number!\n";
 
 	std::cout << "Enter your name: ";
 	std::getline(std::cin, playerName);
 
-	std::cout << "The game generates random number between 1 and 100. Do you want to change the range?\n Yes - 1, No - 0, Stop game - stop \n ";
-	std::getline(std::cin, chose);
+	std::cout << "The game generates a random number between 1 and 100. Do you want to change the range?\n Yes - 1, No - 0, Stop game - stop \n ";
+	std::string userInput;
+	std::getline(std::cin, userInput);
 
-	while (chose != "1" && chose != "0" && chose != "stop")
+	while (userInput != "1" && userInput != "0" && userInput != "stop")
 	{
-		std::string userInput;
-		std::cerr << "Enter 1 or 2  ('stop' to end the game): ";
+		std::cerr << "Enter 1 or 0 ('stop' to end the game): ";
 		std::cin >> userInput;
 		if (userInput == "stop")
-			{
-				std::cout << "Game stopped by the player.\n";
-				return (0);
-			}
-			try
-			{
-				chose = std::stoi(userInput);
-			}
-			catch (const std::invalid_argument&)
-			{
-				std::cout << "Invalid input. Please enter a valid number or 'stop'.\n";
-				std::cin.clear();
-				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				continue;
-			}
+		{
+			std::cout << "Game stopped by the player.\n";
+			return 0;
+        }
+		try
+		{
+			chose = std::stoi(userInput);
+		}
+		catch (const std::invalid_argument&)
+		{
+			std::cout << "Invalid input. Please enter a valid number or 'stop'.\n";
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
+		}
 	}
-
-	if (chose == "1")
+	if (userInput == "1")
 	{
 		std::cout << "Enter the minimum value for the range: ";
 		std::cin >> min;
@@ -128,7 +127,7 @@ int main()
 		NumberGuessingGame game(playerName, min, max);
 		game.play();
 	}
-	else if (chose == "0")
+	else if (userInput == "0")
 	{
 		int maxAttempts;
 		std::cout << "Enter the maximum number of attempts: ";
